@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aek.shop.persistence.mapper.ShopScrollInfoMapper">
+
+    <resultMap id="scrollResultMap" type="com.aek.shop.api.vo.ShopScrollInfoVO">
+    	<id column="id" jdbcType="BIGINT" property="id" />
+    	<result column="id" jdbcType="Long" property="id"/>
+	    <result column="scroll_id" jdbcType="String" property="scrollId"/>
+	    <result column="shop_id" jdbcType="String" property="shopId"/>
+	    <result column="org_id" jdbcType="String" property="orgId"/>
+	    <result column="scroll_index" jdbcType="Integer" property="scrollIndex"/>
+	    <result column="scroll_url" jdbcType="String" property="scrollUrl"/>
+	    <result column="scroll_jump_url" jdbcType="String" property="scrollJumpUrl"/>
+	    <result column="scroll_status" jdbcType="Integer" property="scrollStatus"/>
+	    <result column="start_time" jdbcType="Date" property="startTime"/>
+	    <result column="expire_time" jdbcType="Date" property="expireTime"/>
+	    <result column="add_by" jdbcType="String" property="addBy"/>
+	    <result column="add_name" jdbcType="String" property="addName"/>
+	    <result column="add_time" jdbcType="Date" property="addTime"/>
+	    <result column="last_edit_by" jdbcType="String" property="lastEditBy"/>
+	    <result column="last_edit_name" jdbcType="String" property="lastEditName"/>
+	    <result column="last_edit_time" jdbcType="Date" property="lastEditTime"/>
+	    <result column="del_flag" jdbcType="Integer" property="delFlag"/>
+	    </resultMap>
+
+	<resultMap id="baseResultMap" type="com.aek.shop.persistence.bean.ShopScrollInfo">
+    	<id column="id" jdbcType="BIGINT" property="id" />
+	    <result column="id" jdbcType="Long" property="id"/>
+	    <result column="scroll_id" jdbcType="String" property="scrollId"/>
+	    <result column="shop_id" jdbcType="String" property="shopId"/>
+	    <result column="org_id" jdbcType="String" property="orgId"/>
+	    <result column="scroll_index" jdbcType="Integer" property="scrollIndex"/>
+	    <result column="scroll_url" jdbcType="String" property="scrollUrl"/>
+	    <result column="scroll_jump_url" jdbcType="String" property="scrollJumpUrl"/>
+	    <result column="scroll_status" jdbcType="Integer" property="scrollStatus"/>
+	    <result column="start_time" jdbcType="Date" property="startTime"/>
+	    <result column="expire_time" jdbcType="Date" property="expireTime"/>
+	    <result column="add_by" jdbcType="String" property="addBy"/>
+	    <result column="add_name" jdbcType="String" property="addName"/>
+	    <result column="add_time" jdbcType="Date" property="addTime"/>
+	    <result column="last_edit_by" jdbcType="String" property="lastEditBy"/>
+	    <result column="last_edit_name" jdbcType="String" property="lastEditName"/>
+	    <result column="last_edit_time" jdbcType="Date" property="lastEditTime"/>
+	    <result column="del_flag" jdbcType="Integer" property="delFlag"/>
+	    </resultMap>
+
+	<select id="get" resultType="com.aek.shop.persistence.bean.ShopScrollInfo">
+		select `id`,`scroll_id`,`shop_id`,`org_id`,`scroll_index`,`scroll_url`,`scroll_jump_url`,`scroll_status`,`start_time`,`expire_time`,`add_by`,`add_name`,`add_time`,`last_edit_by`,`last_edit_name`,`last_edit_time`,`del_flag` from shop_scroll_info where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.aek.shop.persistence.bean.ShopScrollInfo">
+		select `id`,`scroll_id`,`shop_id`,`org_id`,`scroll_index`,`scroll_url`,`scroll_jump_url`,`scroll_status`,`start_time`,`expire_time`,`add_by`,`add_name`,`add_time`,`last_edit_by`,`last_edit_name`,`last_edit_time`,`del_flag` from shop_scroll_info
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="scrollId != null and scrollId != ''"> and scroll_id = #{scrollId} </if>
+		  		  <if test="shopId != null and shopId != ''"> and shop_id = #{shopId} </if>
+		  		  <if test="orgId != null and orgId != ''"> and org_id = #{orgId} </if>
+		  		  <if test="scrollIndex != null and scrollIndex != ''"> and scroll_index = #{scrollIndex} </if>
+		  		  <if test="scrollUrl != null and scrollUrl != ''"> and scroll_url = #{scrollUrl} </if>
+		  		  <if test="scrollJumpUrl != null and scrollJumpUrl != ''"> and scroll_jump_url = #{scrollJumpUrl} </if>
+		  		  <if test="scrollStatus != null and scrollStatus != ''"> and scroll_status = #{scrollStatus} </if>
+		  		  <if test="startTime != null and startTime != ''"> and start_time = #{startTime} </if>
+		  		  <if test="expireTime != null and expireTime != ''"> and expire_time = #{expireTime} </if>
+		  		  <if test="addBy != null and addBy != ''"> and add_by = #{addBy} </if>
+		  		  <if test="addName != null and addName != ''"> and add_name = #{addName} </if>
+		  		  <if test="addTime != null and addTime != ''"> and add_time = #{addTime} </if>
+		  		  <if test="lastEditBy != null and lastEditBy != ''"> and last_edit_by = #{lastEditBy} </if>
+		  		  <if test="lastEditName != null and lastEditName != ''"> and last_edit_name = #{lastEditName} </if>
+		  		  <if test="lastEditTime != null and lastEditTime != ''"> and last_edit_time = #{lastEditTime} </if>
+		  		  <if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
+		  		</where>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from shop_scroll_info
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="scrollId != null and scrollId != ''"> and scroll_id = #{scrollId} </if>
+		  		  <if test="shopId != null and shopId != ''"> and shop_id = #{shopId} </if>
+		  		  <if test="orgId != null and orgId != ''"> and org_id = #{orgId} </if>
+		  		  <if test="scrollIndex != null and scrollIndex != ''"> and scroll_index = #{scrollIndex} </if>
+		  		  <if test="scrollUrl != null and scrollUrl != ''"> and scroll_url = #{scrollUrl} </if>
+		  		  <if test="scrollJumpUrl != null and scrollJumpUrl != ''"> and scroll_jump_url = #{scrollJumpUrl} </if>
+		  		  <if test="scrollStatus != null and scrollStatus != ''"> and scroll_status = #{scrollStatus} </if>
+		  		  <if test="startTime != null and startTime != ''"> and start_time = #{startTime} </if>
+		  		  <if test="expireTime != null and expireTime != ''"> and expire_time = #{expireTime} </if>
+		  		  <if test="addBy != null and addBy != ''"> and add_by = #{addBy} </if>
+		  		  <if test="addName != null and addName != ''"> and add_name = #{addName} </if>
+		  		  <if test="addTime != null and addTime != ''"> and add_time = #{addTime} </if>
+		  		  <if test="lastEditBy != null and lastEditBy != ''"> and last_edit_by = #{lastEditBy} </if>
+		  		  <if test="lastEditName != null and lastEditName != ''"> and last_edit_name = #{lastEditName} </if>
+		  		  <if test="lastEditTime != null and lastEditTime != ''"> and last_edit_time = #{lastEditTime} </if>
+		  		  <if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.aek.shop.persistence.bean.ShopScrollInfo">
+		insert into shop_scroll_info
+		(
+			`id`, 
+			`scroll_id`, 
+			`shop_id`, 
+			`org_id`, 
+			`scroll_index`, 
+			`scroll_url`, 
+			`scroll_jump_url`, 
+			`scroll_status`, 
+			`start_time`, 
+			`expire_time`, 
+			`add_by`, 
+			`add_name`, 
+			`add_time`, 
+			`last_edit_by`, 
+			`last_edit_name`, 
+			`last_edit_time`, 
+			`del_flag`
+		)
+		values
+		(
+			#{id}, 
+			#{scrollId}, 
+			#{shopId}, 
+			#{orgId}, 
+			#{scrollIndex}, 
+			#{scrollUrl}, 
+			#{scrollJumpUrl}, 
+			#{scrollStatus}, 
+			#{startTime}, 
+			#{expireTime}, 
+			#{addBy}, 
+			#{addName}, 
+			#{addTime}, 
+			#{lastEditBy}, 
+			#{lastEditName}, 
+			#{lastEditTime}, 
+			#{delFlag}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.aek.shop.persistence.bean.ShopScrollInfo">
+		update shop_scroll_info 
+		<set>
+			<if test="scrollId != null">`scroll_id` = #{scrollId}, </if>
+			<if test="shopId != null">`shop_id` = #{shopId}, </if>
+			<if test="orgId != null">`org_id` = #{orgId}, </if>
+			<if test="scrollIndex != null">`scroll_index` = #{scrollIndex}, </if>
+			<if test="scrollUrl != null">`scroll_url` = #{scrollUrl}, </if>
+			<if test="scrollJumpUrl != null">`scroll_jump_url` = #{scrollJumpUrl}, </if>
+			<if test="scrollStatus != null">`scroll_status` = #{scrollStatus}, </if>
+			<if test="startTime != null">`start_time` = #{startTime}, </if>
+			<if test="expireTime != null">`expire_time` = #{expireTime}, </if>
+			<if test="addBy != null">`add_by` = #{addBy}, </if>
+			<if test="addName != null">`add_name` = #{addName}, </if>
+			<if test="addTime != null">`add_time` = #{addTime}, </if>
+			<if test="lastEditBy != null">`last_edit_by` = #{lastEditBy}, </if>
+			<if test="lastEditName != null">`last_edit_name` = #{lastEditName}, </if>
+			<if test="lastEditTime != null">`last_edit_time` = #{lastEditTime}, </if>
+			<if test="delFlag != null">`del_flag` = #{delFlag}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from shop_scroll_info where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from shop_scroll_info where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

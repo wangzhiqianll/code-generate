@@ -1,0 +1,31 @@
+package ${package}.${project}.api.bo;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import com.aek.core.bo.AbstractPageQueryBO;
+
+/** 
+ * @Description ${domain}
+ * @author ansen.zhu
+ * @date ${datetime}
+ */
+public class ${className}PageQueryBO  extends AbstractPageQueryBO{
+
+	#foreach ($column in $columns)
+    private $column.javaDataType $column.lowercaseAttrName;
+#end
+
+#foreach ($column in $columns)
+    public $column.javaDataType get${column.uppercaseAttrName}(){
+    	return $column.lowercaseAttrName;
+    }
+    
+    public void set${column.uppercaseAttrName}($column.javaDataType $column.lowercaseAttrName){
+    	this.$column.lowercaseAttrName = $column.lowercaseAttrName;
+    }
+#end
+
+}
